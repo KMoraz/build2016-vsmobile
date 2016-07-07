@@ -1,0 +1,20 @@
+version: 1.0.{build}
+before_build:
+- cmd: >-
+    npm install
+    
+    npm install -g cordova ionic@beta taco-cli
+build:
+  project: build2016-vsmobile.sln
+  verbosity: minimal
+before_package:
+- cmd: >-
+    echo no | taco feedback
+
+    taco install-reqs android
+before_deploy:
+- ps: echo "Before deployment script"
+deploy:
+- provider: Local
+after_deploy:
+- ps: echo "After deployment script"
